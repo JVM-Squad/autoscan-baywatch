@@ -24,6 +24,7 @@
     "vuex": "4.1.0"
   },
   "devDependencies": {
+    "@intlify/unplugin-vue-i18n": "2.0.0",
     "@types/jest": "29.5.11",
     "@types/js-md5": "0.7.2",
     "@types/json-patch": "0.0.33",

@@ -4,6 +4,7 @@ import { routes as configRoutes } from '@/configuration/router';
 import { routes as teamsRoutes } from '@/teams/router';
 import { routes as techwatchRoutes } from '@/techwatch/router';
 import { requireAuthNavGuard, routes as securityRoutes } from '@/security/router';
+import { setupI18nLocal } from '@/i18n';
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -18,5 +19,6 @@ const router = createRouter({
 } as RouterOptions);
 
 router.beforeEach(requireAuthNavGuard);
+router.beforeEach(setupI18nLocal);
 
 export default router;
