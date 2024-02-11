@@ -10,7 +10,7 @@
     <li v-if="user.isAuthenticated && store.getters['user/hasRoleUser']">
       <router-link to="/teams" active-class="active" @click="sideNavToggle">
         <UserGroupIcon class="fill-current w-6 h-6 mr-2"/>
-        Teams
+        Teams {{ t('sidenav.teams') }}
       </router-link>
     </li>
     <li v-if="user.isAuthenticated && store.getters['user/hasRoleUser']">
@@ -51,6 +51,10 @@ import {
   UserGroupIcon,
 } from '@heroicons/vue/20/solid';
 import { SidenavMutation } from '@/store/sidenav/SidenavMutation.enum';
+import { useI18n } from 'vue-i18n';
+import enUS from '@/layout/locales/en.json';
+
+type MessageSchema = typeof enUS
 
 @Component({
   name: 'SideNavManagement',
@@ -65,15 +69,18 @@ import { SidenavMutation } from '@/store/sidenav/SidenavMutation.enum';
   },
   setup() {
     const store = useStore();
+    const { t } = useI18n();
     return {
       store: store,
       user: store.state.user,
+      t: t,
     };
   },
 })
 export default class SideNavManagement extends Vue {
   private store;
   private user: UserState;
+  private t: MessageSchema;
 
   public sideNavToggle(): void {
     this.store.commit(SidenavMutation.TOGGLE);
